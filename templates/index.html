@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nutrition Analyzer</title>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 20px;">
+    <h1 style="color: #333; text-align: center;">Nutrition Analyzer</h1>
+    
+    <form method="POST" style="text-align: center; margin: 20px;">
+        <input type="text" name="dish" placeholder="Enter dish name" 
+               style="padding: 8px; width: 200px; border: 1px solid #ccc; border-radius: 4px;">
+        <input type="submit" value="Analyze" 
+               style="padding: 8px 16px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer;">
+    </form>
+
+    {% if dish %}
+        <h2 style="color: #444; margin-top: 30px;">Results for: {{ dish }}</h2>
+        
+        {% if error %}
+            <p style="color: #ff0000; font-style: italic;">{{ error }}</p>
+        {% else %}
+            <p style="margin: 10px 0; color: #666;">
+                <span style="font-weight: bold;">Cautions:</span> 
+                {{ cautions|join(', ') if cautions else 'None' }}
+            </p>
+            <p style="margin: 10px 0; color: #666;">
+                <span style="font-weight: bold;">Calories:</span> 
+                {{ calories|round(2) if calories else 'N/A' }} kcal
+            </p>
+            <p style="margin: 10px 0; color: #666;">
+                <span style="font-weight: bold;">Carbohydrates:</span> 
+                {{ carbs|round(2) if carbs else 'N/A' }} g
+            </p>
+            <p style="margin: 10px 0; color: #666;">
+                <span style="font-weight: bold;">Sugar:</span> 
+                {{ sugar|round(2) if sugar else 'N/A' }} g
+            </p>
+            <p style="margin: 10px 0; color: #666;">
+                <span style="font-weight: bold;">Protein:</span> 
+                {{ protein|round(2) if protein else 'N/A' }} g
+            </p>
+            <p style="margin: 10px 0; color: #666;">
+                <span style="font-weight: bold;">Fats:</span> 
+                {{ fats|round(2) if fats else 'N/A' }} g
+            </p>
+            <p style="margin: 10px 0; color: #666;">
+                <span style="font-weight: bold;">Fiber:</span> 
+                {{ fiber|round(2) if fiber else 'N/A' }} g
+            </p>
+        {% endif %}
+    {% endif %}
+</body>
+</html>
